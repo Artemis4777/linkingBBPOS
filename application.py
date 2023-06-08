@@ -1,14 +1,16 @@
 from flask import Flask, request, redirect
 import urllib.parse
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 # declare app
 application = Flask(__name__)
 CORS(application)
+application.config['CORS_HEADERS'] = 'Content-Type'
 
 
 # serve main page
 @application.route("/")
+@cross_origin()
 def index():
     requestParametes = request.args.to_dict()
     set(k.lower() for k in requestParametes)
