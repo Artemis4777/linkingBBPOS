@@ -1,8 +1,10 @@
 from flask import Flask, request, redirect
 import urllib.parse
+from flask_cors import CORS
 
 # declare app
 application = Flask(__name__)
+CORS(application)
 
 
 # serve main page
