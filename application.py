@@ -13,7 +13,7 @@ CORS(application)
 @cross_origin()
 def index():
     requestParametes = request.args.to_dict()
-    set(k.lower() for k in requestParametes)
+    requestParametes = {k.lower(): v for k, v in requestParametes.items()}
     print(requestParametes)
     if "xredirecturl" not in requestParametes:
         requestParametes["xredirecturl"] = "https://www.cardknoxdeeplinktest.com/results"

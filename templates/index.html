@@ -43,8 +43,7 @@
 
   <script>
     function openApp() {
-      // Replace 'dck://app.cardknox.com/transaction' with your deep link URL
-      window.location.href = '{{newLink}}';
+      window.location.href = decodeURIComponent('{{newLink | safe}}');
     }
   </script>
 </body>
