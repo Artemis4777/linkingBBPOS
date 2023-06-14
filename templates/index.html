@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Open App</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .message {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p class="message">Click the button below to open the Cardknox app:</p>
+    <button class="button" onclick="openApp()">Open App</button>
+  </div>
+
+  <script>
+    function openApp() {
+      // Replace 'dck://app.cardknox.com/transaction' with your deep link URL
+      window.location.href = '{{newLink}}';
+    }
+  </script>
+</body>
+</html>

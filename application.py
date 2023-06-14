@@ -1,15 +1,15 @@
-from flask import Flask, request, redirect
+from flask import Flask, request, render_template
 import urllib.parse
 from flask_cors import CORS, cross_origin
 
 # declare app
 application = Flask(__name__)
 CORS(application)
-application.config['CORS_HEADERS'] = 'Content-Type'
+
 
 
 # serve main page
-@application.route("/")
+@application.route("/", methods=["POST", "GET"])
 @cross_origin()
 def index():
     requestParametes = request.args.to_dict()
@@ -19,9 +19,11 @@ def index():
         requestParametes["xredirecturl"] = "https://www.cardknoxdeeplinktest.com/results"
     if "xkey" not in requestParametes:
         requestParametes["xkey"] = "artemisdev12345"
-    newLink = "dck://app.cardknox.com/transaction?" + urllib.parse.urlencode(requestParametes, doseq=True)
+    newLink = "dck://app.cardknox.com/transaction?" + \
+        urllib.parse.urlencode(requestParametes, doseq=True)
     print(newLink)
-    return redirect(newLink, code=302)
+    return render_template("index.html", newLink=newLink)
+
 
 # parameters to run with
 if __name__ == "__main__":
