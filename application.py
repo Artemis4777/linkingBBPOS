@@ -16,9 +16,9 @@ def index():
     requestParametes = {k.lower(): v for k, v in requestParametes.items()}
     print(requestParametes)
     if "xredirecturl" not in requestParametes:
-        requestParametes["xredirecturl"] = "https://www.cardknoxdeeplinktest.com/results"
+        requestParametes["xredirecturl"] = "https://bbpos.cardknox.link"
     if "xkey" not in requestParametes:
-        requestParametes["xkey"] = "artemisdev12345"
+        requestParametes["xkey"] = ""
     newLink = "dck://app.cardknox.com/transaction?" + \
         urllib.parse.urlencode(requestParametes, doseq=True)
     print(newLink)
