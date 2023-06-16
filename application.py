@@ -7,7 +7,6 @@ application = Flask(__name__)
 CORS(application)
 
 
-
 # serve main page
 @application.route("/", methods=["POST", "GET"])
 @cross_origin()
@@ -16,9 +15,13 @@ def index():
     requestParametes = {k.lower(): v for k, v in requestParametes.items()}
     print(requestParametes)
     if "xredirecturl" not in requestParametes:
-        requestParametes["xredirecturl"] = "https://www.cardknoxdeeplinktest.com/results"
-    if "xkey" not in requestParametes:
-        requestParametes["xkey"] = "artemisdev12345"
+        requestParametes["xRedirectURL"] = "https://bbpos.cardknox.com"
+    else:
+        requestParametes["xRedirectURL"] = requestParametes["xredirecturl"]
+        del requestParametes["xredirecturl"]
+    if "xkey" in requestParametes:
+        requestParametes["xKey"] = requestParametes["xkey"]
+        del requestParametes["xkey"]
     newLink = "dck://app.cardknox.com/transaction?" + \
         urllib.parse.urlencode(requestParametes, doseq=True)
     print(newLink)
