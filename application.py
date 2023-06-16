@@ -15,17 +15,29 @@ def index():
     requestParametes = {k.lower(): v for k, v in requestParametes.items()}
     print(requestParametes)
     if "xredirecturl" not in requestParametes:
-        requestParametes["xRedirectURL"] = "https://bbpos.cardknox.com"
+        requestParametes["xRedirectURL"] = "https://bbpos.cardknox.link/results"
     else:
         requestParametes["xRedirectURL"] = requestParametes["xredirecturl"]
         del requestParametes["xredirecturl"]
     if "xkey" in requestParametes:
         requestParametes["xKey"] = requestParametes["xkey"]
         del requestParametes["xkey"]
+    if "xamount" in requestParametes:
+        requestParametes["xAmount"] = requestParametes["xamount"]
+        del requestParametes["xamount"]
+    if "xcommand" in requestParametes:
+        requestParametes["xCommand"] = requestParametes["xcommand"]
+        del requestParametes["xcommand"]
     newLink = "dck://app.cardknox.com/transaction?" + \
         urllib.parse.urlencode(requestParametes, doseq=True)
     print(newLink)
     return render_template("index.html", newLink=newLink)
+
+
+@application.route("/results", methods=["POST", "GET"])
+def results():
+    resultJson = request.args.to_dict()
+    return render_template("results.html", data=resultJson)
 
 
 # parameters to run with
