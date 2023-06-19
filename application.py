@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 import urllib.parse
 from flask_cors import CORS, cross_origin
 
@@ -30,7 +30,8 @@ def index():
         del requestParametes["xcommand"]
     newLink = "dck://app.cardknox.com/transaction?" + \
         urllib.parse.urlencode(requestParametes, doseq=True)
-    print(newLink)
+    if request.method == "POST":
+        return jsonify(redirect=newLink)
     return render_template("index.html", newLink=newLink)
 
 
