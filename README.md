@@ -1,5 +1,7 @@
 # linkingBBPOS
-Conversion from BBPOS to Deep Linking Concept.
+Conversion from BBPOS to Deep Linking (Concept):
+
+------------------------------------------------
 
 BBPOS allows users to trigger a transaction via http, so most integrations were built on the web. 
 
